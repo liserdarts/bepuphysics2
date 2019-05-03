@@ -15,7 +15,7 @@ using Quaternion = BepuUtilities.Quaternion;
 
 namespace Demos
 {
-    struct Grabber
+    public struct Grabber
     {
         bool active;
         BodyReference body;
@@ -128,7 +128,7 @@ namespace Demos
             {
                 //Draw a crosshair if there is no mouse cursor.
                 var center = camera.Position + camera.Forward * (camera.NearClip * 10);
-                var crosshairLength = 0.1f * camera.NearClip * MathF.Tan(camera.FieldOfView * 0.5f);
+                var crosshairLength = 0.1f * camera.NearClip * (float)Math.Tan(camera.FieldOfView * 0.5f);
                 var rightOffset = camera.Right * crosshairLength;
                 var upOffset = camera.Up * crosshairLength;
                 lines.Allocate() = new LineInstance(center - rightOffset, center + rightOffset, new Vector3(1, 0, 0), new Vector3());

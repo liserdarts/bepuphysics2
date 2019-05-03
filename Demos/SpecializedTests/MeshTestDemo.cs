@@ -98,9 +98,9 @@ namespace Demos.SpecializedTests
             DemoMeshHelper.CreateDeformedPlane(planeWidth, planeHeight,
                 (int x, int y) =>
                 {
-                    return new Vector3(x - planeWidth / 2, 1 * MathF.Cos(x / 2f) * MathF.Sin(y / 2f), y - planeHeight / 2);
+                    return new Vector3(x - planeWidth / 2, 1 * (float)Math.Cos(x / 2f) * (float)Math.Sin(y / 2f), y - planeHeight / 2);
                 }, new Vector3(2, 1, 2), BufferPool, out var planeMesh);
-            Simulation.Statics.Add(new StaticDescription(new Vector3(64, -10, 64), BepuUtilities.Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), MathF.PI / 2),
+            Simulation.Statics.Add(new StaticDescription(new Vector3(64, -10, 64), BepuUtilities.Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), (float)Math.PI / 2),
                 new CollidableDescription(Simulation.Shapes.Add(planeMesh), 0.1f)));
         }
 

@@ -410,10 +410,10 @@ namespace Demos.Demos
                     for (int k = 0; k < widthInVoxels; ++k)
                     {
                         //Create some sine wave based noise for a slightly interesting environment.
-                        var octave0 = MathF.Cos((i + 78) * 0.8f) + MathF.Cos((j + 37) * 0.8f) + MathF.Cos((k + 131) * 0.8f);
-                        var octave1 = MathF.Cos((i + 59) * 0.4f) + MathF.Cos((j + 100) * 0.4f) + MathF.Cos((k + 131) * 0.4f);
-                        var octave2 = MathF.Cos((i + 43) * 0.1f) + MathF.Cos((j + 200) * 0.1f) + MathF.Cos((k + 281) * 0.1f);
-                        var octave3 = MathF.Cos((i + 647) * 0.025f) + MathF.Cos((j + 1553) * 0.025f) + MathF.Cos((k + 53) * 0.025f);
+                        var octave0 = (float)Math.Cos((i + 78) * 0.8f) + (float)Math.Cos((j + 37) * 0.8f) + (float)Math.Cos((k + 131) * 0.8f);
+                        var octave1 = (float)Math.Cos((i + 59) * 0.4f) + (float)Math.Cos((j + 100) * 0.4f) + (float)Math.Cos((k + 131) * 0.4f);
+                        var octave2 = (float)Math.Cos((i + 43) * 0.1f) + (float)Math.Cos((j + 200) * 0.1f) + (float)Math.Cos((k + 281) * 0.1f);
+                        var octave3 = (float)Math.Cos((i + 647) * 0.025f) + (float)Math.Cos((j + 1553) * 0.025f) + (float)Math.Cos((k + 53) * 0.025f);
                         var density = octave0 + octave1 + octave2 + octave3;
                         if (density > 0)
                             voxelIndices.AllocateUnsafely() = new Vector3(i, j, k);

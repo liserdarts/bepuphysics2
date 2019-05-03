@@ -84,7 +84,7 @@ namespace Demos.SpecializedTests
                 var normalDot = Vector3.Dot(normalWideLane0, normal);
                 Debug.Assert(normalDot > 0.9999f && normalDot < 1.00001f);
                 var hitLocationError = rayDirection * t + (rayOrigin - pointOnTrianglePlane);
-                Debug.Assert(hitLocationError.Length() < 1e-2f * MathF.Max(pointOnTrianglePlane.Length(), rayDirection.Length()));
+                Debug.Assert(hitLocationError.Length() < 1e-2f * (float)Math.Max(pointOnTrianglePlane.Length(), rayDirection.Length()));
 
             }
         }

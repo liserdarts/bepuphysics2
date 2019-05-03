@@ -83,7 +83,7 @@ namespace Demos.SpecializedTests
 
 
             //Simulation.Statics.Add(new StaticDescription(
-            //    new Vector3(0, -0.5f, 0), Quaternion.CreateFromAxisAngle(Vector3.Normalize(new Vector3(1, 0, 1)), MathF.PI * 0.00f), new CollidableDescription(Simulation.Shapes.Add(new Box(3000, 1, 3000)), 0.1f)));
+            //    new Vector3(0, -0.5f, 0), Quaternion.CreateFromAxisAngle(Vector3.Normalize(new Vector3(1, 0, 1)), (float)Math.PI * 0.00f), new CollidableDescription(Simulation.Shapes.Add(new Box(3000, 1, 3000)), 0.1f)));
 
             const int planeWidth = 256;
             const int planeHeight = 256;
@@ -91,9 +91,9 @@ namespace Demos.SpecializedTests
                 (int x, int y) =>
                 {
                     Vector2 offsetFromCenter = new Vector2(x - planeWidth / 2, y - planeHeight / 2);
-                    return new Vector3(offsetFromCenter.X, MathF.Cos(x / 2f) + MathF.Sin(y / 2f), offsetFromCenter.Y);
+                    return new Vector3(offsetFromCenter.X, (float)Math.Cos(x / 2f) + (float)Math.Sin(y / 2f), offsetFromCenter.Y);
                 }, new Vector3(2, 1, 2), BufferPool, out var planeMesh);
-            Simulation.Statics.Add(new StaticDescription(new Vector3(0, -2, 0), Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), MathF.PI / 2),
+            Simulation.Statics.Add(new StaticDescription(new Vector3(0, -2, 0), Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), (float)Math.PI / 2),
                 new CollidableDescription(Simulation.Shapes.Add(planeMesh), 0.1f)));
 
             removedCharacters = new QuickQueue<CharacterController>(characters.CharacterCount, BufferPool);
@@ -112,7 +112,7 @@ namespace Demos.SpecializedTests
                 var tangent = Vector3.Cross(new BodyReference(character.BodyHandle, Simulation.Bodies).Pose.Position, Vector3.UnitY);
                 var tangentLengthSquared = tangent.LengthSquared();
                 if (tangentLengthSquared > 1e-12f)
-                    tangent = tangent / MathF.Sqrt(tangentLengthSquared);
+                    tangent = tangent / (float)Math.Sqrt(tangentLengthSquared);
                 else
                     tangent = Vector3.UnitX;
                 tangent *= 4;

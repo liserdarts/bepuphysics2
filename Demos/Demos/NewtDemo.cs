@@ -738,7 +738,7 @@ namespace Demos.Demos
             var volumeSpringiness = new SpringSettings(30f, 1);
             for (int i = 0; i < 5; ++i)
             {
-                CreateDeformable(Simulation, new Vector3(i * 3, 5 + i * 1.5f, 0), Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), MathF.PI * (i * 0.55f)), 1f, cellSize, weldSpringiness, volumeSpringiness, i, filters, ref vertices, ref vertexSpatialIndices, ref cellVertexIndices, ref tetrahedraVertexIndices);
+                CreateDeformable(Simulation, new Vector3(i * 3, 5 + i * 1.5f, 0), Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), (float)Math.PI * (i * 0.55f)), 1f, cellSize, weldSpringiness, volumeSpringiness, i, filters, ref vertices, ref vertexSpatialIndices, ref cellVertexIndices, ref tetrahedraVertexIndices);
             }
 
             BufferPool.Return(ref vertices);

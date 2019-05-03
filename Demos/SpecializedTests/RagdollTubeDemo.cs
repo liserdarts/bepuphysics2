@@ -49,7 +49,7 @@ namespace Demos.SpecializedTests
             var tubeCenter = new Vector3(0, 8, 0);
             const int panelCount = 20;
             const float tubeRadius = 6;
-            var panelShape = new Box(MathF.PI * 2 * tubeRadius / panelCount, 1, 80);
+            var panelShape = new Box((float)Math.PI * 2 * tubeRadius / panelCount, 1, 80);
             var panelShapeIndex = Simulation.Shapes.Add(panelShape);
             var builder = new CompoundBuilder(BufferPool, Simulation.Shapes, panelCount + 1);
             for (int i = 0; i < panelCount; ++i)

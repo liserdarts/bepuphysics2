@@ -37,13 +37,13 @@ namespace Demos
             var resolution = new Vector2(renderer.Surface.Resolution.X, renderer.Surface.Resolution.Y);
             Span<Vector2> screenLocations = stackalloc Vector2[descriptions.Count];
             int closestIndex = -1;
-            float closestDistance = MathF.Max(resolution.X, resolution.Y) * 0.1f;
+            float closestDistance = (float)Math.Max(resolution.X, resolution.Y) * 0.1f;
             for (int i = 0; i < descriptions.Count; ++i)
             {
                 var textPosition = descriptions[i].Position;
                 Matrix.Transform(new Vector4(textPosition, 1), camera.ViewProjection, out var projected);
                 projected /= projected.W;
-                if (projected.Z <= 0 || MathF.Abs(projected.X) > 1 || MathF.Abs(projected.Y) > 1)
+                if (projected.Z <= 0 || (float)Math.Abs(projected.X) > 1 || (float)Math.Abs(projected.Y) > 1)
                     continue;
                 var ndc = new Vector2(projected.X, projected.Y);
                 screenLocations[i] = (ndc * new Vector2(0.5f, -0.5f) + new Vector2(0.5f)) * resolution;

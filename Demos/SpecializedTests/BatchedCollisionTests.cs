@@ -132,7 +132,7 @@ namespace Demos.SpecializedTests
                 };
             }
             while ((orientationLengthSquared = pose.Orientation.LengthSquared()) < 1e-5f);
-            var inverseLength = 1f / MathF.Sqrt(orientationLengthSquared);
+            var inverseLength = 1f / (float)Math.Sqrt(orientationLengthSquared);
             pose.Orientation.X *= inverseLength;
             pose.Orientation.Y *= inverseLength;
             pose.Orientation.Z *= inverseLength;

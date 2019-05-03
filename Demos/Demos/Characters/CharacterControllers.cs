@@ -516,7 +516,7 @@ namespace Demos.Demos.Characters
                             //That's really not concerning from a performance perspective- characters don't jump many times per frame.
                             ref var jump = ref analyzeContactsWorkerCache.Jumps.AllocateUnsafely();
                             jump.CharacterBodyIndex = bodyLocation.Index;
-                            jump.CharacterVelocityChange = characterUp * MathF.Max(0, character.JumpVelocity - (characterUpVelocity - supportUpVelocity));
+                            jump.CharacterVelocityChange = characterUp * (float)Math.Max(0, character.JumpVelocity - (characterUpVelocity - supportUpVelocity));
                             if (character.Support.Mobility == CollidableMobility.Dynamic)
                             {
                                 jump.SupportBodyIndex = supportingBodyLocation.Index;
@@ -533,7 +533,7 @@ namespace Demos.Demos.Characters
                             //Static bodies have no velocity, so we don't have to consider the support.
                             ref var jump = ref analyzeContactsWorkerCache.Jumps.AllocateUnsafely();
                             jump.CharacterBodyIndex = bodyLocation.Index;
-                            jump.CharacterVelocityChange = characterUp * MathF.Max(0, character.JumpVelocity - characterUpVelocity);
+                            jump.CharacterVelocityChange = characterUp * (float)Math.Max(0, character.JumpVelocity - characterUpVelocity);
                             jump.SupportBodyIndex = -1;
                         }
                         character.Supported = false;
@@ -556,7 +556,7 @@ namespace Demos.Demos.Characters
                         var zLengthSquared = surfaceBasis.Z.LengthSquared();
                         if (zLengthSquared > 1e-12f)
                         {
-                            surfaceBasis.Z /= MathF.Sqrt(zLengthSquared);
+                            surfaceBasis.Z /= (float)Math.Sqrt(zLengthSquared);
                         }
                         else
                         {

@@ -142,8 +142,8 @@ namespace Demos.SpecializedTests
             var span = min * 2;
             min = -min;
 
-            var sideArea = 4 * MathF.PI * cylinder.Radius * cylinder.HalfLength;
-            var capArea = MathF.PI * cylinder.Radius * cylinder.Radius;
+            var sideArea = 4 * (float)Math.PI * cylinder.Radius * cylinder.HalfLength;
+            var capArea = (float)Math.PI * cylinder.Radius * cylinder.Radius;
             var totalArea = capArea * 2 + sideArea;
             var faceSelection = random.NextDouble();
             if (faceSelection * totalArea < sideArea)
@@ -179,8 +179,8 @@ namespace Demos.SpecializedTests
 
         public bool PointIsOnSurface(ref Cylinder cylinder, ref Vector3 localPoint)
         {
-            var epsilon = MathF.Max(cylinder.HalfLength, cylinder.Radius) * 1e-3f;
-            if (MathF.Abs(localPoint.Y) > cylinder.HalfLength + epsilon)
+            var epsilon = (float)Math.Max(cylinder.HalfLength, cylinder.Radius) * 1e-3f;
+            if ((float)Math.Abs(localPoint.Y) > cylinder.HalfLength + epsilon)
             {
                 //Too far up or down.
                 return false;
@@ -192,7 +192,7 @@ namespace Demos.SpecializedTests
                 //Too far out.
                 return false;
             }
-            if (MathF.Abs(localPoint.Y) > cylinder.HalfLength - epsilon)
+            if ((float)Math.Abs(localPoint.Y) > cylinder.HalfLength - epsilon)
             {
                 //It's on one of the caps. Already confirmed that the point isn't outside of the radius.
                 return true;

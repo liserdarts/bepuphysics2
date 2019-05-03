@@ -8,7 +8,7 @@ using System.Text;
 
 namespace Demos.UI
 {
-    struct DemoSwapper
+    public struct DemoSwapper
     {
         public int TargetDemoIndex;
         bool TrackingInput;

@@ -32,7 +32,7 @@ namespace Demos.Demos
                 triangle.Broadcast(new Triangle(a, b, c));
                 var margin = new Vector<float>(1f);
                 Vector3Wide.Broadcast(new Vector3(1, -1, 0), out var offsetB);
-                QuaternionWide.Broadcast(BepuUtilities.Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), MathF.PI / 2), out var orientationB);
+                QuaternionWide.Broadcast(BepuUtilities.Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), (float)Math.PI / 2), out var orientationB);
                 tester.Test(ref sphere, ref triangle, ref margin, ref offsetB, ref orientationB, Vector<float>.Count, out var manifold);
             }
             {
@@ -96,7 +96,7 @@ namespace Demos.Demos
                     Pose = new RigidPose
                     {
                         Position = new Vector3(2, 0, 2),
-                        Orientation = BepuUtilities.Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), MathF.PI / 3.2345f)
+                        Orientation = BepuUtilities.Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), (float)Math.PI / 3.2345f)
                     },
                     Collidable = new CollidableDescription
                     {

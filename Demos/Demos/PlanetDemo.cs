@@ -42,7 +42,7 @@ namespace Demos.Demos
                 {
                     var offset = pose.Position - PlanetCenter;
                     var distance = offset.Length();
-                    velocity.Linear -= gravityDt * offset / MathF.Max(1f, distance * distance * distance);
+                    velocity.Linear -= gravityDt * offset / (float)Math.Max(1f, distance * distance * distance);
                 }
             }
         }

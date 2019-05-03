@@ -25,7 +25,7 @@ namespace DemoRenderer.Constraints
                 t1 = Vector3.Cross(normal, new Vector3(-1, 1, 1));
                 lengthSquared = t1.LengthSquared();
             }
-            t1 /= MathF.Sqrt(lengthSquared);
+            t1 /= (float)Math.Sqrt(lengthSquared);
             t2 = Vector3.Cross(normal, t1);
         }
 

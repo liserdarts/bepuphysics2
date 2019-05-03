@@ -71,7 +71,7 @@ namespace Demos.Demos
 
             ////x - angularVelocity * dot(x, angularVelocity)
 
-            //var angularSpeed = MathF.Sqrt(angularSpeedSquared);
+            //var angularSpeed = (float)Math.Sqrt(angularSpeedSquared);
             //var angularDirection = angularVelocity / angularSpeed;
             //var planeDot = Vector3.Dot(angularDirection, offset);
             //var planeOffset = planeDot * angularDirection;

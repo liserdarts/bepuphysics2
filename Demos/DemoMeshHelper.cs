@@ -21,7 +21,7 @@ namespace Demos
 
         public static void CreateFan(int triangleCount, float radius, in Vector3 scaling, BufferPool pool, out Mesh mesh)
         {
-            var anglePerTriangle = 2 * MathF.PI / triangleCount;
+            var anglePerTriangle = 2 * (float)Math.PI / triangleCount;
             pool.Take<Triangle>(triangleCount, out var triangles);
             triangles = triangles.Slice(0, triangleCount);
 
@@ -31,8 +31,8 @@ namespace Demos
                 var secondAngle = ((i + 1) % triangleCount) * anglePerTriangle;
 
                 ref var triangle = ref triangles[i];
-                triangle.A = new Vector3(radius * MathF.Cos(firstAngle), 0, radius * MathF.Sin(firstAngle));
-                triangle.B = new Vector3(radius * MathF.Cos(secondAngle), 0, radius * MathF.Sin(secondAngle));
+                triangle.A = new Vector3(radius * (float)Math.Cos(firstAngle), 0, radius * (float)Math.Sin(firstAngle));
+                triangle.B = new Vector3(radius * (float)Math.Cos(secondAngle), 0, radius * (float)Math.Sin(secondAngle));
                 triangle.C = new Vector3();
             }
             mesh = new Mesh(triangles, scaling, pool);

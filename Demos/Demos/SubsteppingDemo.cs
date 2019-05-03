@@ -57,7 +57,7 @@ namespace Demos.Demos
                 var boxDescription = BodyDescription.CreateDynamic(new Vector3(), boxInertia, new CollidableDescription(Simulation.Shapes.Add(boxShape), 0.1f), new BodyActivityDescription(-1f));
                 for (int i = 0; i < 20; ++i)
                 {
-                    boxDescription.Pose = new RigidPose(new Vector3(0, 0.5f + boxShape.Height * (i + 0.5f), 0), Quaternion.CreateFromAxisAngle(Vector3.UnitY, MathF.PI * 0.05f * i));
+                    boxDescription.Pose = new RigidPose(new Vector3(0, 0.5f + boxShape.Height * (i + 0.5f), 0), Quaternion.CreateFromAxisAngle(Vector3.UnitY, (float)Math.PI * 0.05f * i));
                     Simulation.Bodies.Add(boxDescription);
                 }
                 var topBlockShape = new Box(8, 2, 8);
@@ -116,8 +116,8 @@ namespace Demos.Demos
         }
         public override void Update(Window window, Camera camera, Input input, float dt)
         {
-            var substepCountChange = (int)MathF.Max(1f, timestepper.SubstepCount * 0.25f);
-            var iterationCountChange = (int)MathF.Max(1f, Simulation.Solver.IterationCount * 0.25f);
+            var substepCountChange = (int)(float)Math.Max(1f, timestepper.SubstepCount * 0.25f);
+            var iterationCountChange = (int)(float)Math.Max(1f, Simulation.Solver.IterationCount * 0.25f);
             if (input.WasPushed(OpenTK.Input.Key.Z))
             {
                 timestepper.SubstepCount = Math.Max(1, timestepper.SubstepCount - substepCountChange);

@@ -33,7 +33,7 @@ namespace Demos.SpecializedTests
                 Vector3 clamped;
                 if (horizontalLengthSquared > radiusSquared)
                 {
-                    var scale = cylinder.Radius / MathF.Sqrt(horizontalLengthSquared);
+                    var scale = cylinder.Radius / (float)Math.Sqrt(horizontalLengthSquared);
                     clamped.X = scale * point.X;
                     clamped.Z = scale * point.Z;
                 }
@@ -42,7 +42,7 @@ namespace Demos.SpecializedTests
                     clamped.X = point.X;
                     clamped.Z = point.Z;
                 }
-                clamped.Y = MathF.Max(-cylinder.HalfLength, MathF.Min(cylinder.HalfLength, point.Y));
+                clamped.Y = (float)Math.Max(-cylinder.HalfLength, (float)Math.Min(cylinder.HalfLength, point.Y));
                 var distanceSquared = Vector3.DistanceSquared(clamped, point);
                 if (distanceSquared < closestDistanceSquared)
                 {
@@ -85,7 +85,7 @@ namespace Demos.SpecializedTests
                 {
                     randomPointNearCylinder = new Vector3((cylinder.Radius + capsule.HalfLength) * 2, (cylinder.HalfLength + capsule.HalfLength) * 2, (cylinder.Radius + capsule.HalfLength) * 2) *
                         (new Vector3(2) * new Vector3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()) - Vector3.One);
-                    var pointOnCylinderAxis = new Vector3(0, MathF.Max(-cylinder.HalfLength, MathF.Min(cylinder.HalfLength, randomPointNearCylinder.Y)), 0);
+                    var pointOnCylinderAxis = new Vector3(0, (float)Math.Max(-cylinder.HalfLength, (float)Math.Min(cylinder.HalfLength, randomPointNearCylinder.Y)), 0);
                     var offset = randomPointNearCylinder - pointOnCylinderAxis;
                     var lengthSquared = offset.LengthSquared();
                     if (lengthSquared > minimumDistanceSquared)
@@ -99,7 +99,7 @@ namespace Demos.SpecializedTests
                     direction = new Vector3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()) * new Vector3(2) - Vector3.One;
                     directionLengthSquared = direction.LengthSquared();
                 } while (directionLengthSquared < 1e-8f);
-                direction /= MathF.Sqrt(directionLengthSquared);
+                direction /= (float)Math.Sqrt(directionLengthSquared);
 
 
                 Vector3Wide.Broadcast(randomPointNearCylinder, out var capsuleOrigin);
@@ -127,7 +127,7 @@ namespace Demos.SpecializedTests
                 //iterationsSquaredSum += iterationsRequired[0] * iterationsRequired[0];
 
                 BruteForceSearch(randomPointNearCylinder, direction, capsule.HalfLength, cylinder, out var bruteT, out var bruteDistanceSquared, out var errorMargin);
-                var errorRelativeToBrute = MathF.Max(MathF.Abs(bruteT - t[0]), errorMargin) - errorMargin;
+                var errorRelativeToBrute = (float)Math.Max((float)Math.Abs(bruteT - t[0]), errorMargin) - errorMargin;
                 sumOfSquaredBruteError += errorRelativeToBrute * errorRelativeToBrute;
                 totalBruteError += errorRelativeToBrute;
 
@@ -136,7 +136,7 @@ namespace Demos.SpecializedTests
                     Console.WriteLine($"Search and brute force disagree on intersecting distance; search found {distanceSquared}, brute found {bruteDistanceSquared}");
                 }
 
-                var bruteDistanceError = MathF.Abs(MathF.Sqrt(distanceSquared) - MathF.Sqrt(bruteDistanceSquared));
+                var bruteDistanceError = (float)Math.Abs((float)Math.Sqrt(distanceSquared) - (float)Math.Sqrt(bruteDistanceSquared));
                 sumOfSquaredBruteDistanceError += bruteDistanceError * bruteDistanceError;
                 totalBruteDistanceError += bruteDistanceError;
 
@@ -231,7 +231,7 @@ namespace Demos.SpecializedTests
                             Activity = new BodyActivityDescription(-0.01f),
                             Pose = new RigidPose
                             {
-                                Orientation = Quaternion.Identity,// Quaternion.CreateFromAxisAngle(Vector3.Normalize(new Vector3(1, 1, 1)), MathF.PI * 0.79813f),
+                                Orientation = Quaternion.Identity,// Quaternion.CreateFromAxisAngle(Vector3.Normalize(new Vector3(1, 1, 1)), (float)Math.PI * 0.79813f),
                                 Position = location
                             },
                             Collidable = new CollidableDescription
@@ -270,14 +270,14 @@ namespace Demos.SpecializedTests
             DemoMeshHelper.CreateDeformedPlane(planeWidth, planeHeight,
                 (int x, int y) =>
                 {
-                    var octave0 = (MathF.Sin((x + 5f) * 0.05f) + MathF.Sin((y + 11) * 0.05f)) * 3f;
-                    var octave1 = (MathF.Sin((x + 17) * 0.15f) + MathF.Sin((y + 19) * 0.15f)) * 2f;
-                    var octave2 = (MathF.Sin((x + 37) * 0.35f) + MathF.Sin((y + 93) * 0.35f)) * 1f;
-                    var octave3 = (MathF.Sin((x + 53) * 0.65f) + MathF.Sin((y + 47) * 0.65f)) * 0.5f;
-                    var octave4 = (MathF.Sin((x + 67) * 1.50f) + MathF.Sin((y + 13) * 1.5f)) * 0.25f;
+                    var octave0 = ((float)Math.Sin((x + 5f) * 0.05f) + (float)Math.Sin((y + 11) * 0.05f)) * 3f;
+                    var octave1 = ((float)Math.Sin((x + 17) * 0.15f) + (float)Math.Sin((y + 19) * 0.15f)) * 2f;
+                    var octave2 = ((float)Math.Sin((x + 37) * 0.35f) + (float)Math.Sin((y + 93) * 0.35f)) * 1f;
+                    var octave3 = ((float)Math.Sin((x + 53) * 0.65f) + (float)Math.Sin((y + 47) * 0.65f)) * 0.5f;
+                    var octave4 = ((float)Math.Sin((x + 67) * 1.50f) + (float)Math.Sin((y + 13) * 1.5f)) * 0.25f;
                     return new Vector3(x, octave0 + octave1 + octave2 + octave3 + octave4, y);
                 }, new Vector3(4, 1, 4), BufferPool, out var planeMesh);
-            Simulation.Statics.Add(new StaticDescription(new Vector3(-100, -15, 100), Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), MathF.PI / 2),
+            Simulation.Statics.Add(new StaticDescription(new Vector3(-100, -15, 100), Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), (float)Math.PI / 2),
                 new CollidableDescription(Simulation.Shapes.Add(planeMesh), 0.1f)));
 
             //Simulation.Statics.Add(new StaticDescription(new Vector3(0, -10, 0), Quaternion.CreateFromAxisAngle(Vector3.Normalize(new Vector3(1, 0, 1)), 0), Simulation.Shapes.Add(new Cylinder(100, 1f)), 0.1f));

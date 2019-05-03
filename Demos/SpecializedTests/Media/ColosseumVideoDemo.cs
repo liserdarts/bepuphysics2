@@ -23,7 +23,7 @@ namespace Demos.SpecializedTests.Media
     {
         void CreateRingWall(Vector3 position, Box ringBoxShape, BodyDescription bodyDescription, int height, float radius)
         {
-            var circumference = MathF.PI * 2 * radius;
+            var circumference = (float)Math.PI * 2 * radius;
             var boxCountPerRing = (int)(0.9f * circumference / ringBoxShape.Length);
             float increment = MathHelper.TwoPi / boxCountPerRing;
             for (int ringIndex = 0; ringIndex < height; ringIndex++)
@@ -32,7 +32,7 @@ namespace Demos.SpecializedTests.Media
                 {
                     var angle = ((ringIndex & 1) == 0 ? i + 0.5f : i) * increment;
                     bodyDescription.Pose = new RigidPose(
-                        position + new Vector3(-MathF.Cos(angle) * radius, (ringIndex + 0.5f) * ringBoxShape.Height, MathF.Sin(angle) * radius),
+                        position + new Vector3(-(float)Math.Cos(angle) * radius, (ringIndex + 0.5f) * ringBoxShape.Height, (float)Math.Sin(angle) * radius),
                         Quaternion.CreateFromAxisAngle(Vector3.UnitY, angle));
                     Simulation.Bodies.Add(bodyDescription);
                 }
@@ -41,15 +41,15 @@ namespace Demos.SpecializedTests.Media
 
         void CreateRingPlatform(Vector3 position, Box ringBoxShape, BodyDescription bodyDescription, float radius)
         {
-            var innerCircumference = MathF.PI * 2 * (radius - ringBoxShape.HalfLength);
+            var innerCircumference = (float)Math.PI * 2 * (radius - ringBoxShape.HalfLength);
             var boxCount = (int)(0.95f * innerCircumference / ringBoxShape.Height);
             float increment = MathHelper.TwoPi / boxCount;
             for (int i = 0; i < boxCount; i++)
             {
                 var angle = i * increment;
                 bodyDescription.Pose = new RigidPose(
-                    position + new Vector3(-MathF.Cos(angle) * radius, ringBoxShape.HalfWidth, MathF.Sin(angle) * radius),
-                    Quaternion.Concatenate(Quaternion.CreateFromAxisAngle(Vector3.UnitZ, MathF.PI * 0.5f), Quaternion.CreateFromAxisAngle(Vector3.UnitY, angle + MathF.PI * 0.5f)));
+                    position + new Vector3(-(float)Math.Cos(angle) * radius, ringBoxShape.HalfWidth, (float)Math.Sin(angle) * radius),
+                    Quaternion.Concatenate(Quaternion.CreateFromAxisAngle(Vector3.UnitZ, (float)Math.PI * 0.5f), Quaternion.CreateFromAxisAngle(Vector3.UnitY, angle + (float)Math.PI * 0.5f)));
                 Simulation.Bodies.Add(bodyDescription);
             }
         }
@@ -116,7 +116,7 @@ namespace Demos.SpecializedTests.Media
         void CreateCharacter(Vector3 position)
         {
             characterActive = true;
-            character = new CharacterInput(characters, position, new Capsule(0.5f, 1), 0.1f, 1, 20, 100, 6, 4, MathF.PI * 0.4f);
+            character = new CharacterInput(characters, position, new Capsule(0.5f, 1), 0.1f, 1, 20, 100, 6, 4, (float)Math.PI * 0.4f);
         }
 
 

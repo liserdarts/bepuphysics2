@@ -43,7 +43,7 @@ namespace Demos.Demos
                 (int x, int y) =>
                 {
                     Vector2 offsetFromCenter = new Vector2(x - planeWidth / 2, y - planeHeight / 2);
-                    return new Vector3(offsetFromCenter.X, MathF.Cos(x / 4f) * MathF.Sin(y / 4f) - 0.2f * offsetFromCenter.LengthSquared(), offsetFromCenter.Y);
+                    return new Vector3(offsetFromCenter.X, (float)Math.Cos(x / 4f) * (float)Math.Sin(y / 4f) - 0.2f * offsetFromCenter.LengthSquared(), offsetFromCenter.Y);
                 }, new Vector3(2, 1, 2), BufferPool, out var staticShape);
             var staticShapeIndex = Simulation.Shapes.Add(staticShape);
             const int staticGridWidthInInstances = 128;
@@ -172,7 +172,7 @@ namespace Demos.Demos
                         localPose.Orientation = new BepuUtilities.Quaternion((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
                     }
                     while ((orientationLengthSquared = localPose.Orientation.LengthSquared()) < 1e-9f);
-                    BepuUtilities.Quaternion.Scale(localPose.Orientation, 1f / MathF.Sqrt(orientationLengthSquared), out localPose.Orientation);
+                    BepuUtilities.Quaternion.Scale(localPose.Orientation, 1f / (float)Math.Sqrt(orientationLengthSquared), out localPose.Orientation);
                     compoundBuilder.Add(shapeIndex, localPose, childInertia.InverseInertiaTensor, 1);
                 }
                 compoundBuilder.BuildDynamicCompound(out children, out inertia, out var center);

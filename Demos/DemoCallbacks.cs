@@ -33,8 +33,8 @@ namespace Demos
             //No reason to recalculate gravity * dt for every body; just cache it ahead of time.
             gravityDt = Gravity * dt;
             //Since this doesn't use per-body damping, we can precalculate everything.
-            linearDampingDt = MathF.Pow(MathHelper.Clamp(1 - LinearDamping, 0, 1), dt);
-            angularDampingDt = MathF.Pow(MathHelper.Clamp(1 - AngularDamping, 0, 1), dt);
+            linearDampingDt = (float)Math.Pow(MathHelper.Clamp(1 - LinearDamping, 0, 1), dt);
+            angularDampingDt = (float)Math.Pow(MathHelper.Clamp(1 - AngularDamping, 0, 1), dt);
         }
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void IntegrateVelocity(int bodyIndex, in RigidPose pose, in BodyInertia localInertia, int workerIndex, ref BodyVelocity velocity)

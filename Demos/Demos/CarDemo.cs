@@ -173,9 +173,9 @@ namespace Demos.Demos
         {
             var steeringAngleDifference = targetSteeringAngle - steeringAngle;
             var maximumChange = SteeringSpeed * dt;
-            var steeringAngleChange = MathF.Min(maximumChange, MathF.Max(-maximumChange, steeringAngleDifference));
+            var steeringAngleChange = (float)Math.Min(maximumChange, (float)Math.Max(-maximumChange, steeringAngleDifference));
             var previousSteeringAngle = steeringAngle;
-            steeringAngle = MathF.Min(MaximumSteeringAngle, MathF.Max(-MaximumSteeringAngle, steeringAngle + steeringAngleChange));
+            steeringAngle = (float)Math.Min(MaximumSteeringAngle, (float)Math.Max(-MaximumSteeringAngle, steeringAngle + steeringAngleChange));
             if (steeringAngle != previousSteeringAngle)
             {
                 //By guarding the constraint modifications behind a state test, we avoid waking up the car every single frame.
@@ -377,8 +377,8 @@ namespace Demos.Demos
             const float backZ = -1.7f;
             playerController = new SimpleCarController(SimpleCar.Create(Simulation, properties, new RigidPose(new Vector3(0, 10, 0), Quaternion.Identity), bodyShapeIndex, bodyInertia, 0.5f, wheelShapeIndex, wheelInertia, 2f,
                 new Vector3(-x, y, frontZ), new Vector3(x, y, frontZ), new Vector3(-x, y, backZ), new Vector3(x, y, backZ), new Vector3(0, -1, 0), 0.25f,
-                new SpringSettings(5f, 0.7f), Quaternion.CreateFromAxisAngle(Vector3.UnitZ, MathF.PI * 0.5f)),
-                forwardSpeed: 75, forwardForce: 6, zoomMultiplier: 2, backwardSpeed: 30, backwardForce: 4, idleForce: 0.25f, brakeForce: 7, steeringSpeed: 1.5f, maximumSteeringAngle: MathF.PI * 0.23f);
+                new SpringSettings(5f, 0.7f), Quaternion.CreateFromAxisAngle(Vector3.UnitZ, (float)Math.PI * 0.5f)),
+                forwardSpeed: 75, forwardForce: 6, zoomMultiplier: 2, backwardSpeed: 30, backwardForce: 4, idleForce: 0.25f, brakeForce: 7, steeringSpeed: 1.5f, maximumSteeringAngle: (float)Math.PI * 0.23f);
 
             //Create a bunch of AI cars to race against.
             const int aiCount = 384;
@@ -403,7 +403,7 @@ namespace Demos.Demos
                     var buildingShape = new Box(10 + (float)random.NextDouble() * 10, 20 + (float)random.NextDouble() * 20, 10 + (float)random.NextDouble() * 10);
                     Simulation.Statics.Add(new StaticDescription(
                         new Vector3(0, buildingShape.HalfHeight, 0) + landmarkMin + landmarkSpan * new Vector3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble()),
-                        Quaternion.CreateFromAxisAngle(Vector3.UnitY, (float)random.NextDouble() * MathF.PI),
+                        Quaternion.CreateFromAxisAngle(Vector3.UnitY, (float)random.NextDouble() * (float)Math.PI),
                         new CollidableDescription(Simulation.Shapes.Add(buildingShape), 0.1f)));
                 }
             }
@@ -415,11 +415,11 @@ namespace Demos.Demos
             {
                 //The AI cars are very similar, except... we handicap them a little to make the player good about themselves.
                 var position = min + span * new Vector3((float)random.NextDouble(), (float)random.NextDouble(), (float)random.NextDouble());
-                var orientation = Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), (float)random.NextDouble() * MathF.PI * 2);
+                var orientation = Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), (float)random.NextDouble() * (float)Math.PI * 2);
                 aiControllers[i].Controller = new SimpleCarController(SimpleCar.Create(Simulation, properties, new RigidPose(position, orientation), bodyShapeIndex, bodyInertia, 0.5f, wheelShapeIndex, wheelInertia, 2f,
                     new Vector3(-x, y, frontZ), new Vector3(x, y, frontZ), new Vector3(-x, y, backZ), new Vector3(x, y, backZ), new Vector3(0, -1, 0), 0.25f,
-                    new SpringSettings(5, 0.7f), Quaternion.CreateFromAxisAngle(Vector3.UnitZ, MathF.PI * 0.5f)),
-                    forwardSpeed: 50, forwardForce: 5, zoomMultiplier: 2, backwardSpeed: 10, backwardForce: 4, idleForce: 0.25f, brakeForce: 7, steeringSpeed: 1.5f, maximumSteeringAngle: MathF.PI * 0.23f);
+                    new SpringSettings(5, 0.7f), Quaternion.CreateFromAxisAngle(Vector3.UnitZ, (float)Math.PI * 0.5f)),
+                    forwardSpeed: 50, forwardForce: 5, zoomMultiplier: 2, backwardSpeed: 10, backwardForce: 4, idleForce: 0.25f, brakeForce: 7, steeringSpeed: 1.5f, maximumSteeringAngle: (float)Math.PI * 0.23f);
                 aiControllers[i].LaneOffset = (float)random.NextDouble() * 20 - 10;
             }
 
@@ -427,22 +427,22 @@ namespace Demos.Demos
             DemoMeshHelper.CreateDeformedPlane(planeWidth, planeWidth,
                 (int vX, int vY) =>
                 {
-                    var octave0 = (MathF.Sin((vX + 5f) * 0.05f) + MathF.Sin((vY + 11) * 0.05f)) * 1.8f;
-                    var octave1 = (MathF.Sin((vX + 17) * 0.15f) + MathF.Sin((vY + 19) * 0.15f)) * 0.9f;
-                    var octave2 = (MathF.Sin((vX + 37) * 0.35f) + MathF.Sin((vY + 93) * 0.35f)) * 0.4f;
-                    var octave3 = (MathF.Sin((vX + 53) * 0.65f) + MathF.Sin((vY + 47) * 0.65f)) * 0.2f;
-                    var octave4 = (MathF.Sin((vX + 67) * 1.50f) + MathF.Sin((vY + 13) * 1.5f)) * 0.125f;
+                    var octave0 = ((float)Math.Sin((vX + 5f) * 0.05f) + (float)Math.Sin((vY + 11) * 0.05f)) * 1.8f;
+                    var octave1 = ((float)Math.Sin((vX + 17) * 0.15f) + (float)Math.Sin((vY + 19) * 0.15f)) * 0.9f;
+                    var octave2 = ((float)Math.Sin((vX + 37) * 0.35f) + (float)Math.Sin((vY + 93) * 0.35f)) * 0.4f;
+                    var octave3 = ((float)Math.Sin((vX + 53) * 0.65f) + (float)Math.Sin((vY + 47) * 0.65f)) * 0.2f;
+                    var octave4 = ((float)Math.Sin((vX + 67) * 1.50f) + (float)Math.Sin((vY + 13) * 1.5f)) * 0.125f;
                     var distanceToEdge = planeWidth / 2 - Math.Max(Math.Abs(vX - planeWidth / 2), Math.Abs(vY - planeWidth / 2));
                     var edgeRamp = 25f / (distanceToEdge + 1);
                     var terrainHeight = octave0 + octave1 + octave2 + octave3 + octave4;
                     var vertexPosition = new Vector2(vX * scale, vY * scale) + terrainPosition;
                     var distanceToTrack = raceTrack.GetDistance(vertexPosition);
-                    var trackWeight = MathF.Min(1f, 3f / (distanceToTrack * 0.1f + 1f));
+                    var trackWeight = (float)Math.Min(1f, 3f / (distanceToTrack * 0.1f + 1f));
                     var height = trackWeight * -10f + terrainHeight * (1 - trackWeight);
                     return new Vector3(vertexPosition.X, height + edgeRamp, vertexPosition.Y);
 
                 }, new Vector3(1, 1, 1), BufferPool, out var planeMesh);
-            Simulation.Statics.Add(new StaticDescription(new Vector3(0, -15, 0), Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), MathF.PI / 2),
+            Simulation.Statics.Add(new StaticDescription(new Vector3(0, -15, 0), Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), (float)Math.PI / 2),
                 new CollidableDescription(Simulation.Shapes.Add(planeMesh), 0.1f)));
 
 
@@ -492,12 +492,12 @@ namespace Demos.Demos
                     var toClosestPoint = closestPoint - new Vector2(pose.Position.X, pose.Position.Z);
                     var horizontalOffset = orientation.X.X * toClosestPoint.X + orientation.X.Z * toClosestPoint.Y;
                     var forwardOffset = orientation.Z.X * toClosestPoint.X + orientation.Z.Z * toClosestPoint.Y;
-                    steeringAngle = MathF.Atan2(horizontalOffset, forwardOffset);
+                    steeringAngle = (float)Math.Atan2(horizontalOffset, forwardOffset);
                 }
-                var speedFraction = 0.25f + MathF.Min(0.75f, MathF.Max(0, 0.75f * (MathF.Abs(steeringAngle) - 0.2f) / -0.4f));
+                var speedFraction = 0.25f + (float)Math.Min(0.75f, (float)Math.Max(0, 0.75f * ((float)Math.Abs(steeringAngle) - 0.2f) / -0.4f));
                 if (orientation.Y.Y < 0.4f)
                     speedFraction = 0;
-                ai.Controller.Update(Simulation, controlDt, steeringAngle, speedFraction, steeringAngle < 0.05f, steeringAngle > MathF.PI * 0.2f && forwardVelocity > ai.Controller.ForwardSpeed * 0.6f);
+                ai.Controller.Update(Simulation, controlDt, steeringAngle, speedFraction, steeringAngle < 0.05f, steeringAngle > (float)Math.PI * 0.2f && forwardVelocity > ai.Controller.ForwardSpeed * 0.6f);
             }
 
             base.Update(window, camera, input, dt);

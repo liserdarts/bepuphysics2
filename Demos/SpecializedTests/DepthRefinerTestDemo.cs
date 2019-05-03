@@ -35,11 +35,11 @@
 //            Simulation = Simulation.Create(BufferPool, new DemoNarrowPhaseCallbacks(), new DemoPoseIntegratorCallbacks(new Vector3(0, 0, 0)));
 //            {
 //                //var shapeA = new Cylinder(1f, 2f);
-//                //var poseA = new RigidPose(new Vector3(12, 0.5f, 12), Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), MathF.PI * 0.5f));
+//                //var poseA = new RigidPose(new Vector3(12, 0.5f, 12), Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), (float)Math.PI * 0.5f));
 //                //var shapeB = new Triangle(new Vector3(-2f, 0, -2f), new Vector3(2f, 0, -2f), new Vector3(-2f, 0, 2f));
 //                //var poseB = new RigidPose(new Vector3(12, 0, 12));
 //                var shapeA = new Cylinder(0.4f, 0.09f);
-//                //var poseA = new RigidPose(new Vector3(12, 0.5f, 12), Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), MathF.PI * 0.5f));
+//                //var poseA = new RigidPose(new Vector3(12, 0.5f, 12), Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), (float)Math.PI * 0.5f));
 //                var shapeB = new Triangle(new Vector3(-0.104847f, -2.863911f, -0.8221359f), new Vector3(-0.7841263f, 1.040714f, -1.362942f), new Vector3(0.8889847f, 1.823196f, 2.185074f));
 //                //var poseB = new RigidPose(new Vector3(12, 0, 12));
 //                Matrix3x3Wide localOrientationB;
@@ -196,7 +196,7 @@
 //            //    //    Y = new Vector3(0.6341797f, 0.2075436f, -0.7448099f),
 //            //    //    Z = new Vector3(-0.1333926f, -0.9782246f, -0.1590062f)
 //            //    //};
-//            //    //var poseB = new RigidPose(new Vector3(-0.2570486f, 1.780561f, -1.033215f), Quaternion.CreateFromAxisAngle(Vector3.Normalize(new Vector3(1, 1, 1)), MathF.PI * 0.35f));
+//            //    //var poseB = new RigidPose(new Vector3(-0.2570486f, 1.780561f, -1.033215f), Quaternion.CreateFromAxisAngle(Vector3.Normalize(new Vector3(1, 1, 1)), (float)Math.PI * 0.35f));
 //            //    var poseB = new RigidPose(positionB, Quaternion.CreateFromRotationMatrix(localOrientationBMatrix));
 
 //            //    basePosition = default;

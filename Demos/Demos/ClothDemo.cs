@@ -221,7 +221,7 @@ namespace Demos.Demos
             }
 
             int clothInstanceId = 0;
-            var initialRotation = Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), MathF.PI * -0.5f);
+            var initialRotation = Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), (float)Math.PI * -0.5f);
             {
                 var position = new Vector3(-90, 40, 0);
                 var handles = CreateBodyGrid(position, initialRotation, 10, 30, 1f, 0.65f, 1, clothInstanceId++, filters, KinematicTopCorners);
@@ -251,10 +251,10 @@ namespace Demos.Demos
 
 
             Simulation.Statics.Add(new StaticDescription(
-                new Vector3(60, 20, 0), Quaternion.CreateFromAxisAngle(new Vector3(0, 0, 1), MathF.PI * 0.5f),
+                new Vector3(60, 20, 0), Quaternion.CreateFromAxisAngle(new Vector3(0, 0, 1), (float)Math.PI * 0.5f),
                 new CollidableDescription(Simulation.Shapes.Add(new Capsule(8, 120)), 0.1f)));
             Simulation.Statics.Add(new StaticDescription(
-                new Vector3(30, 5, 0), Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), MathF.PI * 0.5f),
+                new Vector3(30, 5, 0), Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), (float)Math.PI * 0.5f),
                 new CollidableDescription(Simulation.Shapes.Add(new Capsule(8, 60)), 0.1f)));
 
             {

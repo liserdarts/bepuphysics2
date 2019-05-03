@@ -117,7 +117,7 @@ namespace Demos.Demos
             DemoMeshHelper.CreateDeformedPlane(planeWidth, planeHeight,
                 (int x, int y) =>
                 {
-                    return new Vector3(x, 1 * MathF.Cos(x / 4f) * MathF.Sin(y / 4f), y);
+                    return new Vector3(x, 1 * (float)Math.Cos(x / 4f) * (float)Math.Sin(y / 4f), y);
                 }, new Vector3(2, 3, 2), BufferPool, out var planeMesh);
             Simulation.Statics.Add(new StaticDescription(new Vector3(-64, -10, -64), new CollidableDescription(Simulation.Shapes.Add(planeMesh), 0.1f)));
 
@@ -296,7 +296,7 @@ namespace Demos.Demos
             DemoMeshHelper.CreateDeformedPlane(planeWidth, planeHeight,
                 (int x, int y) =>
                 {
-                    return new Vector3(x - 1.5f, 0.1f * MathF.Cos(x) * MathF.Sin(y), y - 1.5f);
+                    return new Vector3(x - 1.5f, 0.1f * (float)Math.Cos(x) * (float)Math.Sin(y), y - 1.5f);
                 }, new Vector3(1, 2, 1), BufferPool, out var mesh);
 
 

@@ -115,8 +115,8 @@ namespace Demos.Demos
         public unsafe override void Initialize(ContentArchive content, Camera camera)
         {
             camera.Position = new Vector3(70, 40, -80);
-            camera.Yaw = -MathF.PI * 0.8f;
-            camera.Pitch = MathF.PI * 0.1f;
+            camera.Yaw = -(float)Math.PI * 0.8f;
+            camera.Pitch = (float)Math.PI * 0.1f;
 
             var filters = new BodyProperty<ClothCollisionFilter>();
             Simulation = Simulation.Create(BufferPool, new ClothCallbacks() { Filters = filters }, new DemoPoseIntegratorCallbacks(new Vector3(0, -50, 0)));
@@ -128,7 +128,7 @@ namespace Demos.Demos
             }
 
             int clothInstanceId = 0;
-            var initialRotation = Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), MathF.PI * -0.5f);
+            var initialRotation = Quaternion.CreateFromAxisAngle(new Vector3(1, 0, 0), (float)Math.PI * -0.5f);
 
 
 

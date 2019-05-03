@@ -37,7 +37,7 @@ namespace Demos.Demos
 
         public CharacterInput(CharacterControllers characters, Vector3 initialPosition, Capsule shape,
             float speculativeMargin, float mass, float maximumHorizontalForce, float maximumVerticalGlueForce,
-            float jumpVelocity, float speed, float maximumSlope = MathF.PI * 0.25f)
+            float jumpVelocity, float speed, float maximumSlope = (float)Math.PI * 0.25f)
         {
             this.characters = characters;
             var shapeIndex = characters.Simulation.Shapes.Add(shape);
@@ -45,7 +45,7 @@ namespace Demos.Demos
             bodyHandle = characters.Simulation.Bodies.Add(BodyDescription.CreateDynamic(initialPosition, new BodyInertia { InverseMass = 1f / mass }, new CollidableDescription(shapeIndex, speculativeMargin), new BodyActivityDescription(shape.Radius * 0.02f)));
             ref var character = ref characters.AllocateCharacter(bodyHandle, out var characterIndex);
             character.LocalUp = new Vector3(0, 1, 0);
-            character.CosMaximumSlope = MathF.Cos(maximumSlope);
+            character.CosMaximumSlope = (float)Math.Cos(maximumSlope);
             character.JumpVelocity = jumpVelocity;
             character.MaximumVerticalForce = maximumVerticalGlueForce;
             character.MaximumHorizontalForce = maximumHorizontalForce;
@@ -85,7 +85,7 @@ namespace Demos.Demos
             var lengthSquared = movementDirection.LengthSquared();
             if (lengthSquared > 0)
             {
-                movementDirection /= MathF.Sqrt(lengthSquared);
+                movementDirection /= (float)Math.Sqrt(lengthSquared);
             }
 
             ref var character = ref characters.GetCharacterByBodyHandle(bodyHandle);
@@ -216,7 +216,7 @@ namespace Demos.Demos
         public unsafe override void Initialize(ContentArchive content, Camera camera)
         {
             camera.Position = new Vector3(20, 10, 20);
-            camera.Yaw = MathF.PI;
+            camera.Yaw = (float)Math.PI;
             camera.Pitch = 0;
             characters = new CharacterControllers(BufferPool);
             Simulation = Simulation.Create(BufferPool, new CharacterNarrowphaseCallbacks(characters), new DemoPoseIntegratorCallbacks(new Vector3(0, -10, 0)));
@@ -324,7 +324,7 @@ namespace Demos.Demos
         void CreateCharacter(Vector3 position)
         {
             characterActive = true;
-            character = new CharacterInput(characters, position, new Capsule(0.5f, 1), 0.1f, 1, 20, 100, 6, 4, MathF.PI * 0.4f);
+            character = new CharacterInput(characters, position, new Capsule(0.5f, 1), 0.1f, 1, 20, 100, 6, 4, (float)Math.PI * 0.4f);
         }
 
         public override void Update(Window window, Camera camera, Input input, float dt)

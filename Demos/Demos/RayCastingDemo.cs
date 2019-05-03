@@ -167,10 +167,10 @@ namespace Demos
             DemoMeshHelper.CreateDeformedPlane(planeWidth, planeHeight,
                 (int x, int y) =>
                 {
-                    return new Vector3(x - planeWidth / 2, 1 * MathF.Cos(x / 4f) * MathF.Sin(y / 4f), y - planeHeight / 2);
+                    return new Vector3(x - planeWidth / 2, 1 * (float)Math.Cos(x / 4f) * (float)Math.Sin(y / 4f), y - planeHeight / 2);
                 }, new Vector3(1, 3, 1), BufferPool, out var planeMesh);
             Simulation.Statics.Add(new StaticDescription(
-                new Vector3(0, -10, 0), BepuUtilities.Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), MathF.PI / 4),
+                new Vector3(0, -10, 0), BepuUtilities.Quaternion.CreateFromAxisAngle(new Vector3(0, 1, 0), (float)Math.PI / 4),
                 new CollidableDescription(Simulation.Shapes.Add(planeMesh), 0.1f)));
 
             int raySourceCount = 3;
@@ -198,7 +198,7 @@ namespace Demos
             int frustumRayHeight = 128;
             float aspectRatio = 1.6f;
             float verticalFOV = MathHelper.Pi * 0.16f;
-            var unitZScreenHeight = 2 * MathF.Tan(verticalFOV / 2);
+            var unitZScreenHeight = 2 * (float)Math.Tan(verticalFOV / 2);
             var unitZScreenWidth = unitZScreenHeight * aspectRatio;
             var unitZSpacing = new Vector2(unitZScreenWidth / frustumRayWidth, unitZScreenHeight / frustumRayHeight);
             var unitZBase = (unitZSpacing - new Vector2(unitZScreenWidth, unitZScreenHeight)) * 0.5f;
@@ -461,7 +461,7 @@ namespace Demos
                 frameCount = 0;
             if (shouldRotate)
             {
-                rotation += (MathF.PI * 1e-2f * (1 / 60f)) % (2 * MathF.PI);
+                rotation += ((float)Math.PI * 1e-2f * (1 / 60f)) % (2 * (float)Math.PI);
             }
             if (shouldCycle)
             {

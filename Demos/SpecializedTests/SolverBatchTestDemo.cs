@@ -142,11 +142,11 @@ namespace Demos.Demos
         {
             var bigBall = new BodyReference(bigBallHandle, Simulation.Bodies);
             timeAccumulator += 1 / 60f;
-            if (timeAccumulator > MathF.PI * 128)
-                timeAccumulator -= MathF.PI * 128;
+            if (timeAccumulator > (float)Math.PI * 128)
+                timeAccumulator -= (float)Math.PI * 128;
             if (!bigBall.IsActive)
                 Simulation.Awakener.AwakenBody(bigBallHandle);
-            bigBall.Velocity.Linear = new Vector3(0, 3f * MathF.Sin(timeAccumulator * 5), 0);
+            bigBall.Velocity.Linear = new Vector3(0, 3f * (float)Math.Sin(timeAccumulator * 5), 0);
             base.Update(window, camera, input, dt);
         }
     }

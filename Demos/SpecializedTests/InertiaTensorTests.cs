@@ -75,7 +75,7 @@ namespace Demos.SpecializedTests
         public bool PointIsContained(ref Vector3 sampleSpacing, ref Vector3 point)
         {
             var horizontalDistanceSquared = point.X * point.X + point.Z * point.Z;
-            return MathF.Abs(point.Y) < Cylinder.HalfLength && horizontalDistanceSquared < Cylinder.Radius * Cylinder.Radius;
+            return (float)Math.Abs(point.Y) < Cylinder.HalfLength && horizontalDistanceSquared < Cylinder.Radius * Cylinder.Radius;
         }
     }
 
@@ -220,7 +220,7 @@ namespace Demos.SpecializedTests
         {
             var ratio = a / b;
             const float ratioThreshold = 0.15f;
-            return MathF.Abs(a - b) < 3e-2f || (ratio < (1 + ratioThreshold) && ratio > 1f / (1 + ratioThreshold));
+            return (float)Math.Abs(a - b) < 3e-2f || (ratio < (1 + ratioThreshold) && ratio > 1f / (1 + ratioThreshold));
         }
 
         public static void Test()

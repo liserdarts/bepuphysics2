@@ -36,21 +36,30 @@ namespace Demos
             var keyValues = (Key[])Enum.GetValues(typeof(Key));
             for (int i = 0; i < keyNames.Length; ++i)
             {
-                keys.TryAdd(keyValues[i], keyNames[i]);
+                if (!keys.ContainsKey(keyValues[i]))
+                {
+                    keys.Add(keyValues[i], keyNames[i]);
+                }
             }
             mouseButtons = new Dictionary<MouseButton, string>();
             var mouseButtonNames = Enum.GetNames(typeof(MouseButton));
             var mouseButtonValues = (MouseButton[])Enum.GetValues(typeof(MouseButton));
             for (int i = 0; i < mouseButtonNames.Length; ++i)
             {
-                mouseButtons.TryAdd(mouseButtonValues[i], mouseButtonNames[i]);
+                if (!mouseButtons.ContainsKey(mouseButtonValues[i]))
+                {
+                    mouseButtons.Add(mouseButtonValues[i], mouseButtonNames[i]);
+                }
             }
             mouseWheel = new Dictionary<MouseWheelAction, string>();
             var wheelNames = Enum.GetNames(typeof(MouseWheelAction));
             var wheelValues = (MouseWheelAction[])Enum.GetValues(typeof(MouseWheelAction));
             for (int i = 0; i < wheelNames.Length; ++i)
             {
-                mouseWheel.TryAdd(wheelValues[i], wheelNames[i]);
+                if (!mouseWheel.ContainsKey(wheelValues[i]))
+                {
+                    mouseWheel.Add(wheelValues[i], wheelNames[i]);
+                }
             }
         }
     }

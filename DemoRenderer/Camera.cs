@@ -38,7 +38,7 @@ namespace DemoRenderer
         public float Pitch
         {
             get { return pitch; }
-            set { pitch = Math.Clamp(value, -maximumPitch, maximumPitch); }
+            set { pitch = Math.Min(Math.Max(value, -maximumPitch), maximumPitch); }
         }
 
         float maximumPitch;
@@ -48,7 +48,7 @@ namespace DemoRenderer
         public float MaximumPitch
         {
             get { return maximumPitch; }
-            set { maximumPitch = (float)Math.Clamp(value, 0, Math.PI / 2); }
+            set { maximumPitch = (float)Math.Min(Math.Max(value, 0), Math.PI / 2); }
         }
 
         /// <summary>
@@ -217,7 +217,7 @@ namespace DemoRenderer
         /// <param name="nearClip">Near clip plane of the camera's projection.</param>
         /// <param name="farClip">Far clip plane of the camera's projection.</param>
         /// <param name="maximumPitch">Maximum angle that the camera can look up or down.</param>
-        public Camera(float aspectRatio, float fieldOfView, float nearClip, float farClip, float maximumPitch = MathF.PI * 0.499f)
+        public Camera(float aspectRatio, float fieldOfView, float nearClip, float farClip, float maximumPitch = (float)Math.PI * 0.499f)
         {
             AspectRatio = aspectRatio;
             FieldOfView = fieldOfView;
@@ -239,7 +239,7 @@ namespace DemoRenderer
             {
                 return Forward;
             }
-            var unitPlaneHalfHeight = MathF.Tan(FieldOfView * 0.5f);
+            var unitPlaneHalfHeight = (float)Math.Tan(FieldOfView * 0.5f);
             var unitPlaneHalfWidth = unitPlaneHalfHeight * AspectRatio;
             var localRayDirection = new Vector3(
                 new Vector2(unitPlaneHalfWidth, unitPlaneHalfHeight) * 2 * new Vector2(normalizedMousePosition.X - 0.5f, 0.5f - normalizedMousePosition.Y), -1);

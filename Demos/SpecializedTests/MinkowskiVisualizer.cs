@@ -101,10 +101,10 @@ namespace Demos.SpecializedTests
             for (int i = 0; i < sampleCount; ++i)
             {
                 var index = i + 0.5f;
-                var phi = MathF.Acos(1f - 2f * index * inverseSampleCount);
-                var theta = (MathF.PI * (1f + 2.2360679775f)) * index;
-                var sinPhi = MathF.Sin(phi);
-                var sampleDirection = new Vector3(MathF.Cos(theta) * sinPhi, MathF.Sin(theta) * sinPhi, MathF.Cos(phi));
+                var phi = (float)Math.Acos(1f - 2f * index * inverseSampleCount);
+                var theta = ((float)Math.PI * (1f + 2.2360679775f)) * index;
+                var sinPhi = (float)Math.Sin(phi);
+                var sampleDirection = new Vector3((float)Math.Cos(theta) * sinPhi, (float)Math.Sin(theta) * sinPhi, (float)Math.Cos(phi));
                 Vector3Wide.Broadcast(sampleDirection, out var sampleDirectionWide);
                 //Could easily use the fact that this is vectorized, but it's marginally easier not to!
                 FindSupport<TShapeA, TShapeWideA, TSupportFinderA, TShapeB, TShapeWideB, TSupportFinderB>(aWide, bWide, localOffsetBWide, localOrientationBWide, ref supportFinderA, ref supportFinderB, sampleDirectionWide, Vector<int>.Zero, out var supportWide);
