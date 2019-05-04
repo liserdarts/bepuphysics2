@@ -100,9 +100,9 @@ namespace Demos
                     targetOrientation = body.Pose.Orientation;
                     active = true;
                     CreateMotorDescription(hitLocation, body.LocalInertia.InverseMass, out var linearDescription, out var angularDescription);
-                    linearMotorHandle = simulation.Solver.Add(body.Handle, ref linearDescription);
+                    linearMotorHandle = simulation.Solver.AddRef(body.Handle, ref linearDescription);
                     if (!Bodies.HasLockedInertia(body.LocalInertia.InverseInertiaTensor))
-                        angularMotorHandle = simulation.Solver.Add(body.Handle, ref angularDescription);
+                        angularMotorHandle = simulation.Solver.AddRef(body.Handle, ref angularDescription);
                 }
             }
             else if (active)

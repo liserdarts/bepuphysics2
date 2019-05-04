@@ -610,7 +610,7 @@ namespace BepuPhysics
         /// <param name="bodyHandles">First body handle in a list of body handles used by the constraint.</param>
         /// <param name="bodyCount">Number of bodies used by the constraint.</param>
         /// <returns>Allocated constraint handle.</returns>
-        public int Add<TDescription>(ref int bodyHandles, int bodyCount, ref TDescription description)
+        public int AddRef<TDescription>(ref int bodyHandles, int bodyCount, ref TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
             Debug.Assert(description.ConstraintTypeId >= 0 && description.ConstraintTypeId < TypeProcessors.Length &&
@@ -643,7 +643,7 @@ namespace BepuPhysics
         public int Add<TDescription>(ref int bodyHandles, int bodyCount, TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
-            return Add(ref bodyHandles, bodyCount, ref description);
+            return AddRef(ref bodyHandles, bodyCount, ref description);
         }
 
         /// <summary>
@@ -652,10 +652,10 @@ namespace BepuPhysics
         /// <typeparam name="TDescription">Type of the constraint description to add.</typeparam>
         /// <param name="bodyHandle">First body of the pair.</param>
         /// <returns>Allocated constraint handle.</returns>
-        public unsafe int Add<TDescription>(int bodyHandle, ref TDescription description)
+        public unsafe int AddRef<TDescription>(int bodyHandle, ref TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
-            return Add(ref bodyHandle, 1, ref description);
+            return AddRef(ref bodyHandle, 1, ref description);
         }
 
         /// <summary>
@@ -667,7 +667,7 @@ namespace BepuPhysics
         public unsafe int Add<TDescription>(int bodyHandle, TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
-            return Add(ref bodyHandle, 1, ref description);
+            return AddRef(ref bodyHandle, 1, ref description);
         }
 
         /// <summary>
@@ -684,7 +684,7 @@ namespace BepuPhysics
             var bodyReferences = stackalloc int[2];
             bodyReferences[0] = bodyHandleA;
             bodyReferences[1] = bodyHandleB;
-            return Add(ref bodyReferences[0], 2, ref description);
+            return AddRef(ref bodyReferences[0], 2, ref description);
         }
 
         /// <summary>
@@ -716,7 +716,7 @@ namespace BepuPhysics
             bodyReferences[0] = bodyHandleA;
             bodyReferences[1] = bodyHandleB;
             bodyReferences[2] = bodyHandleC;
-            return Add(ref bodyReferences[0], 3, ref description);
+            return AddRef(ref bodyReferences[0], 3, ref description);
         }
 
         /// <summary>
@@ -751,7 +751,7 @@ namespace BepuPhysics
             bodyReferences[1] = bodyHandleB;
             bodyReferences[2] = bodyHandleC;
             bodyReferences[3] = bodyHandleD;
-            return Add(ref bodyReferences[0], 4, ref description);
+            return AddRef(ref bodyReferences[0], 4, ref description);
         }
 
         /// <summary>
