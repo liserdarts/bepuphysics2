@@ -241,7 +241,7 @@ namespace DemoRenderer
             orientation.Y = UnpackDuplicateZeroSNORM(Unsafe.Add(ref packedShorts, 1));
             orientation.Z = UnpackDuplicateZeroSNORM(Unsafe.Add(ref packedShorts, 2));
             orientation.W = UnpackDuplicateZeroSNORM(Unsafe.Add(ref packedShorts, 3));
-            Quaternion.Normalize(ref orientation);
+            Quaternion.NormalizeRef(ref orientation);
         }
 
         [Conditional("DEBUG")]

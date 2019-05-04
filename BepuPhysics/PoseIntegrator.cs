@@ -107,7 +107,7 @@ namespace BepuPhysics
                 q.W = MathHelper.Cos(halfAngle);
                 //Note that the input and output may overlap.
                 Quaternion.Concatenate(orientation, q, out integratedOrientation);
-                Quaternion.Normalize(ref integratedOrientation);
+                Quaternion.NormalizeRef(ref integratedOrientation);
             }
             else
             {

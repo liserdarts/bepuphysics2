@@ -42,7 +42,7 @@ namespace Demos.SpecializedTests
                 q.Z = (float)random.NextDouble() * 2 - 1;
                 q.W = (float)random.NextDouble() * 2 - 1;
 
-                Quaternion.Normalize(ref q);
+                Quaternion.NormalizeRef(ref q);
 
                 for (int i = 0; i < innerIterations; ++i)
                 {
