@@ -610,7 +610,7 @@ namespace BepuPhysics
         /// <param name="bodyHandles">First body handle in a list of body handles used by the constraint.</param>
         /// <param name="bodyCount">Number of bodies used by the constraint.</param>
         /// <returns>Allocated constraint handle.</returns>
-        public int AddRef<TDescription>(ref int bodyHandles, int bodyCount, ref TDescription description)
+        public int AddCountRef<TDescription>(ref int bodyHandles, int bodyCount, ref TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
             Debug.Assert(description.ConstraintTypeId >= 0 && description.ConstraintTypeId < TypeProcessors.Length &&
@@ -640,10 +640,10 @@ namespace BepuPhysics
         /// <param name="bodyHandles">First body handle in a list of body handles used by the constraint.</param>
         /// <param name="bodyCount">Number of bodies used by the constraint.</param>
         /// <returns>Allocated constraint handle.</returns>
-        public int Add<TDescription>(ref int bodyHandles, int bodyCount, TDescription description)
+        public int AddCount<TDescription>(ref int bodyHandles, int bodyCount, TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
-            return AddRef(ref bodyHandles, bodyCount, ref description);
+            return AddCountRef(ref bodyHandles, bodyCount, ref description);
         }
 
         /// <summary>
@@ -655,7 +655,7 @@ namespace BepuPhysics
         public unsafe int AddRef<TDescription>(int bodyHandle, ref TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
-            return AddRef(ref bodyHandle, 1, ref description);
+            return AddCountRef(ref bodyHandle, 1, ref description);
         }
 
         /// <summary>
@@ -667,7 +667,7 @@ namespace BepuPhysics
         public unsafe int Add<TDescription>(int bodyHandle, TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
-            return AddRef(ref bodyHandle, 1, ref description);
+            return AddCountRef(ref bodyHandle, 1, ref description);
         }
 
         /// <summary>
@@ -677,14 +677,14 @@ namespace BepuPhysics
         /// <param name="bodyHandleA">First body of the pair.</param>
         /// <param name="bodyHandleB">Second body of the pair.</param>
         /// <returns>Allocated constraint handle.</returns>
-        public unsafe int Add<TDescription>(int bodyHandleA, int bodyHandleB, ref TDescription description)
+        public unsafe int AddRef<TDescription>(int bodyHandleA, int bodyHandleB, ref TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
             //Don't really want to take a dependency on the stack layout of parameters, so...
             var bodyReferences = stackalloc int[2];
             bodyReferences[0] = bodyHandleA;
             bodyReferences[1] = bodyHandleB;
-            return AddRef(ref bodyReferences[0], 2, ref description);
+            return AddCountRef(ref bodyReferences[0], 2, ref description);
         }
 
         /// <summary>
@@ -697,7 +697,7 @@ namespace BepuPhysics
         public unsafe int Add<TDescription>(int bodyHandleA, int bodyHandleB, TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
-            return Add(bodyHandleA, bodyHandleB, ref description);
+            return AddRef(bodyHandleA, bodyHandleB, ref description);
         }
 
         /// <summary>
@@ -708,7 +708,7 @@ namespace BepuPhysics
         /// <param name="bodyHandleB">Second body of the constraint.</param>
         /// <param name="bodyHandleC">Third body of the constraint.</param>
         /// <returns>Allocated constraint handle.</returns>
-        public unsafe int Add<TDescription>(int bodyHandleA, int bodyHandleB, int bodyHandleC, ref TDescription description)
+        public unsafe int AddRef<TDescription>(int bodyHandleA, int bodyHandleB, int bodyHandleC, ref TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
             //Don't really want to take a dependency on the stack layout of parameters, so...
@@ -716,7 +716,7 @@ namespace BepuPhysics
             bodyReferences[0] = bodyHandleA;
             bodyReferences[1] = bodyHandleB;
             bodyReferences[2] = bodyHandleC;
-            return AddRef(ref bodyReferences[0], 3, ref description);
+            return AddCountRef(ref bodyReferences[0], 3, ref description);
         }
 
         /// <summary>
@@ -730,7 +730,7 @@ namespace BepuPhysics
         public unsafe int Add<TDescription>(int bodyHandleA, int bodyHandleB, int bodyHandleC, TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
-            return Add(bodyHandleA, bodyHandleB, bodyHandleC, ref description);
+            return AddRef(bodyHandleA, bodyHandleB, bodyHandleC, ref description);
         }
 
         /// <summary>
@@ -742,7 +742,7 @@ namespace BepuPhysics
         /// <param name="bodyHandleC">Third body of the constraint.</param>
         /// <param name="bodyHandleD">Fourth body of the constraint.</param>
         /// <returns>Allocated constraint handle.</returns>
-        public unsafe int Add<TDescription>(int bodyHandleA, int bodyHandleB, int bodyHandleC, int bodyHandleD, ref TDescription description)
+        public unsafe int AddRef<TDescription>(int bodyHandleA, int bodyHandleB, int bodyHandleC, int bodyHandleD, ref TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
             //Don't really want to take a dependency on the stack layout of parameters, so...
@@ -751,7 +751,7 @@ namespace BepuPhysics
             bodyReferences[1] = bodyHandleB;
             bodyReferences[2] = bodyHandleC;
             bodyReferences[3] = bodyHandleD;
-            return AddRef(ref bodyReferences[0], 4, ref description);
+            return AddCountRef(ref bodyReferences[0], 4, ref description);
         }
 
         /// <summary>
@@ -766,7 +766,7 @@ namespace BepuPhysics
         public unsafe int Add<TDescription>(int bodyHandleA, int bodyHandleB, int bodyHandleC, int bodyHandleD, TDescription description)
             where TDescription : IConstraintDescription<TDescription>
         {
-            return Add(bodyHandleA, bodyHandleB, bodyHandleC, bodyHandleD, ref description);
+            return AddRef(bodyHandleA, bodyHandleB, bodyHandleC, bodyHandleD, ref description);
         }
 
         //This is split out for use by the multithreaded constraint remover.

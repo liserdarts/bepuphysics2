@@ -727,7 +727,7 @@ namespace Demos.Demos.Characters
                         ref var pendingConstraint = ref workerCache.DynamicConstraintsToAdd[i];
                         ref var character = ref characters[pendingConstraint.CharacterIndex];
                         Debug.Assert(character.Support.Mobility != CollidableMobility.Static);
-                        character.MotionConstraintHandle = Simulation.Solver.Add(character.BodyHandle, character.Support.Handle, ref pendingConstraint.Description);
+                        character.MotionConstraintHandle = Simulation.Solver.AddRef(character.BodyHandle, character.Support.Handle, ref pendingConstraint.Description);
                     }
                     ref var activeSet = ref Simulation.Bodies.ActiveSet;
                     for (int i = 0; i < workerCache.Jumps.Count; ++i)
